@@ -1,0 +1,58 @@
+# SketchCaddy Git Ignore File
+
+# OpenSCAD 临时文件
+*.csg
+*.stl
+*.off
+*.amf
+*.3mf
+*.dxf
+*.svg
+*.pdf
+*.png
+*.gif
+
+# 保留需要的导出文件
+!exports/*.stl
+!exports/*.png
+
+# 编辑器临时文件
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# IDE 配置
+.idea/
+.vscode/
+*.sublime-*
+
+# 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# 构建输出
+/build/
+/dist/
+/output/
+
+# 日志文件
+*.log
+
+# 压缩包
+*.zip
+*.tar.gz
+*.rar
+
+# FreeCAD 临时文件
+*.FCBak
+*.FCStd1
+
+# 大型二进制文件（根据需要调整）
+# *.blend
+# *.blend1
