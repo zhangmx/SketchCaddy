@@ -40,7 +40,7 @@ easel_height_max = 1500; // 画架最大展开高度
   - `B04_Rear_Panel`: 后面板 (750x520mm)。集成`D01_Telescoping_Handle_Base`（伸缩拉杆底座）的加固安装结构。
   - `B05_Left_Side_Panel`: 左侧板 (750x520mm)。内侧预设`B10_Magnetic_Surface`（磁性白板贴）安装槽。属于“三合一画板”模块。边缘有`F04_Panel_Connector_Hinge`（面板拼接铰链）和`F03_Panel_Quick_Release`（面板快拆锁扣）接口，可以作为侧门打开。
   - `B06_Right_Side_Panel`: 右侧板 (750x520mm)。内侧预设`B10_Magnetic_Surface`（磁性白板贴）安装槽。属于“三合一画板”模块。边缘有`F04_Panel_Connector_Hinge`（面板拼接铰链）和`F03_Panel_Quick_Release`（面板快拆锁扣）接口，可以作为侧门打开。同左侧板，镜像对称。
-  - `B07_Easel_Access_Panel`: 画架专用存取板 (520x520mm)。可快速拆卸，方便取放画架内胆。也属于“三合一画板”模块。
+
   - `B08_Panel_Seal_Gasket`: 面板密封胶条（EVA材质，截面为矩形或D形）。
   - `B09_Panel_Angle_Adjuster`: 画板角度调节器（位于顶板`B01_Top_Panel`两侧，5档位，带弹簧卡珠）。
   - `B10_Magnetic_Surface`: 磁性工作表面（柔性磁白板，尺寸约600x400mm，带背胶）。
@@ -56,7 +56,6 @@ easel_height_max = 1500; // 画架最大展开高度
   - `D03_Canvas_Notch`: 位于拉杆手柄处的突出卡槽，用于卡住画板上缘。
 
 - **`E_核心功能集成`**
-  - `E01_Easel_Cradle`: 便携画架专属内胆。由高密度EVA海绵雕刻而成，完美贴合画架拆卸后的每一根型材（75cm长条x若干短杆）。通过魔术贴或卡扣固定在箱内。
   - `E02_Tool_Panel`: 工具挂板。安装在主存取门内侧，集成MOLLE织带、弹力绳、网兜。
   - `E03_Drawer_Unit`: 可抽拉储物抽屉单元（用于颜料、笔刷）。
   - `E04_Water_Container_Holder`: 水具/水桶固定架。
@@ -66,7 +65,6 @@ easel_height_max = 1500; // 画架最大展开高度
   - `F02_Flip_Lock`: 翻板式搭扣锁（用于门板锁闭，带钥匙孔）。
   - `F03_Panel_Quick_Release`: 面板快拆锁扣（用于可拆卸侧板，按压式，如`SouthCo`品牌类似款）。
   - `F04_Panel_Connector_Hinge`: 面板拼接铰链（用于“三合一画板”功能，连接三块750x520mm面板的侧面）。
-  - `F05_Support_Strut`: 面板支撑杆（“三合一画板”展开后，用于背部支撑的可折叠三角架或撑杆）。
   - `F06_Alignment_Pin_Slot`: 定位销与滑槽（在侧板与相邻板连接处，防止面板错位和脱落）。
 
 - **`G_扩展功能模块`**（可选，后续迭代）
@@ -78,19 +76,22 @@ easel_height_max = 1500; // 画架最大展开高度
 #### **3. 装配关系与动画逻辑**
 - **爆炸图动画**：所有模块沿其法线方向（面板向外，内部零件向上）平移分离，展示所有零件。
 - **搭建画架动画**：
-  1.  打开`B03_Front_Panel`（主存取门）。
-  2.  取出`E01_Easel_Cradle`内胆。
-  3.  从内胆中取出画架零件，模拟组装成完整画架的过程。
-  4.  将`B10_Magnetic_Surface`（或独立磁吸毛毡布）安装到画架上。
+  1.  打开`B05_Left_Side_Panel`、`B06_Right_Side_Panel`（侧边门）锁扣。
+  2.  打开`B03_Front_Panel`（前面板）锁扣。
+  3.  抽出`B03_Front_Panel`、`B05_Left_Side_Panel`、`B06_Right_Side_Panel`，展开。
+  4.  扣紧`F06_Alignment_Pin_Slot`，确保面板定位。
+  5.  将`B03_Front_Panel`、`B05_Left_Side_Panel`、`B06_Right_Side_Panel`，（组合成的画板）安装到`B01_Top_Panel`上的`B09_Panel_Angle_Adjuster`到`D03_Canvas_Notch`组成的画架上（可水平或垂直）。
+  6. 通过`D02_Telescoping_Handle`的最后一节进行角度调节。
+
 - **侧边门打开动画**：
   1.  解锁`F02_Flip_Lock` x2。
-  2.  `B03_Front_Panel`绕`F01_Heavy_Duty_Hinge`轴旋转打开。
-  3.  展示内部`E01_Easel_Cradle`, `E02_Tool_Panel`等。
+  2.  `B05_Left_Side_Panel`绕`F01_Heavy_Duty_Hinge`轴旋转打开。
+  3.  展示内部`E03_Drawer_Unit`, `E02_Tool_Panel`等。
 - **“三合一画板”变形动画**：
-  1.  解锁`B05`, `B06`, `B07`三块侧板的`F03_Panel_Quick_Release`。
+  1.  解锁`B05_Left_Side_Panel`, `B06_Right_Side_Panel`, `B03_Front_Panel`三块侧板的`F03_Panel_Quick_Release`。
   2.  将三块板从框架上取下。
-  3.  通过`F04_Panel_Connector_Hinge`将三块板沿长边（700mm）首尾相连，形成1500x700mm大面板。
-  4.  安装`F05_Support_Strut`到面板背面。
+  3.  通过`F04_Panel_Connector_Hinge`将三块板沿长边（750mm）首尾相连，形成1500x750mm大面板。
+
 
 #### **4. 关键细节与约束**
 1.  **公差与配合**：所有面板与框架的配合间隙预留1mm。锁扣、铰链的安装孔位需精确。
@@ -105,7 +106,7 @@ easel_height_max = 1500; // 画架最大展开高度
 作为程序员，您可以像管理代码一样管理这个硬件项目，实现版本控制和协作。
 
 ```
-ArtCase/                          # 项目根目录
+SketchCaddy/                      # 项目根目录
 ├── README.md                     # 项目总览，设计理念，使用说明
 ├── docs/                         # 设计文档
 │   ├── Product_Specification.md  # 详细产品规格 (就是上面Prompt的文本版)
@@ -121,12 +122,6 @@ ArtCase/                          # 项目根目录
 │   │   └── assembly.scad         # 总装配文件
 │   └── freecad/                  # FreeCAD 设计文件 (可并行)
 │       └── ... (类似结构)
-├── hardware/                     # 生产相关文件
-│   ├── stl/                      # 用于3D打印的STL文件 (如定制连接件、内胆模型)
-│   ├── dxf/                      # 用于激光切割/钣金的DXF文件 (如面板、支架)
-│   └── gerber/                   # PCB文件 (如果未来有电路)
-├── software/                     # 如果未来有智能功能 (照明、称重)
-│   └── firmware/                 # 单片机代码
 └── .gitignore                    # 忽略大文件、临时文件
 ```
 
