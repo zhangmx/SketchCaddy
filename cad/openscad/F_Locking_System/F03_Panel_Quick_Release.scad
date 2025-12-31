@@ -3,8 +3,8 @@
 // 面板快拆锁扣 - 按压式，用于可拆卸侧板
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 锁扣参数
 body_diameter = 25;
@@ -135,4 +135,6 @@ module F03_Panel_Quick_Release(engaged = true) {
 }
 
 // 预览
-F03_Panel_Quick_Release(engaged = true);
+if ($preview && is_undef($assembly_mode)) {
+    F03_Panel_Quick_Release(engaged = true);
+}

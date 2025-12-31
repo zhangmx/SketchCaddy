@@ -3,8 +3,8 @@
 // 支腿/调平地脚 - 安装在底部四角
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 地脚参数
 foot_diameter = 30;          // 底部直径
@@ -48,4 +48,6 @@ module A03_Foot_Pad_Adjustable(extension = 0) {
 }
 
 // 预览
-A03_Foot_Pad();
+if ($preview && is_undef($assembly_mode)) {
+    A03_Foot_Pad();
+}

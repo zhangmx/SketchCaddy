@@ -3,8 +3,8 @@
 // 90度直角连接件 - 用于连接铝型材
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 角码参数
 bracket_size = 20;           // 角码臂长
@@ -74,6 +74,8 @@ module A02_Corner_Bracket_3Way() {
     }
 }
 
-// 预览
-translate([0, 0, 0]) A02_Corner_Bracket();
-translate([40, 0, 0]) A02_Corner_Bracket_3Way();
+// 预览（仅在直接打开此文件时显示）
+if ($preview && is_undef($assembly_mode)) {
+    translate([0, 0, 0]) A02_Corner_Bracket();
+    translate([40, 0, 0]) A02_Corner_Bracket_3Way();
+}

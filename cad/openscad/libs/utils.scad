@@ -1,6 +1,6 @@
 // SketchCaddy - 通用工具函数库
 
-use <global_params.scad>
+include <global_params.scad>
 
 // ============================================
 // 1010铝型材截面模块

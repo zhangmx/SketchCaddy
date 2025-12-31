@@ -3,8 +3,8 @@
 // 翻板式搭扣锁 - 用于门板锁闭，带钥匙孔
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 锁扣参数
 base_width = 40;
@@ -125,4 +125,6 @@ module F02_Flip_Lock(locked = true) {
 }
 
 // 预览
-F02_Flip_Lock(locked = true);
+if ($preview && is_undef($assembly_mode)) {
+    F02_Flip_Lock(locked = true);
+}

@@ -3,8 +3,8 @@
 // 充气万向轮 - 8英寸，带刹车
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 轮子参数
 wheel_diameter = 203.2;      // 8英寸 = 203.2mm
@@ -131,4 +131,6 @@ module C02_Pneumatic_Wheel() {
 }
 
 // 预览
-C02_Pneumatic_Wheel();
+if ($preview && is_undef($assembly_mode)) {
+    C02_Pneumatic_Wheel();
+}

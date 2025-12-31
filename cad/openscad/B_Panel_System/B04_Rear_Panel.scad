@@ -3,8 +3,8 @@
 // 后面板 - 750x520mm，集成伸缩拉杆底座加固结构
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 面板尺寸
 panel_height = global_box_height;  // 750mm
@@ -80,4 +80,6 @@ module B04_handle_base_holes() {
 }
 
 // 预览
-B04_Rear_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    B04_Rear_Panel();
+}

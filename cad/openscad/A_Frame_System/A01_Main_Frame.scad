@@ -3,8 +3,8 @@
 // 主箱体骨架 - 由1010铝型材构成的长方体框架
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 框架尺寸（使用全局参数）
 frame_length = global_box_length;  // X轴 520mm
@@ -77,5 +77,7 @@ module A01_Main_Frame() {
     }
 }
 
-// 单独渲染预览
-A01_Main_Frame();
+// 单独渲染预览（仅在直接打开此文件时显示）
+if ($preview && is_undef($assembly_mode)) {
+    A01_Main_Frame();
+}

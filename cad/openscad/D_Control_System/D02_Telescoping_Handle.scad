@@ -3,8 +3,8 @@
 // 三节式伸缩拉杆总成 - 带人机工学手柄
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 拉杆参数
 section1_length = 350;       // 第一节（最粗）
@@ -126,4 +126,6 @@ module D02_Telescoping_Handle(extension = 0) {
 }
 
 // 预览
-D02_Telescoping_Handle(extension = 200);
+if ($preview && is_undef($assembly_mode)) {
+    D02_Telescoping_Handle(extension = 200);
+}

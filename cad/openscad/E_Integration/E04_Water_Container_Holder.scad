@@ -3,8 +3,8 @@
 // 水具/水桶固定架
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 固定架参数
 holder_diameter = 120;       // 适配常见水桶直径
@@ -134,4 +134,6 @@ module E04_Water_Container_Holder() {
 }
 
 // 预览
-E04_Water_Container_Holder();
+if ($preview && is_undef($assembly_mode)) {
+    E04_Water_Container_Holder();
+}

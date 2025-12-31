@@ -4,8 +4,8 @@
 // 可作为侧门和三合一画板组件
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 面板尺寸
 panel_height = global_box_height;  // 750mm
@@ -77,4 +77,6 @@ module B06_Right_Side_Panel() {
 }
 
 // 预览
-B06_Right_Side_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    B06_Right_Side_Panel();
+}

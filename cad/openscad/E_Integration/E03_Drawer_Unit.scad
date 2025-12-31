@@ -3,8 +3,8 @@
 // 可抽拉储物抽屉单元 - 用于颜料、笔刷
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 抽屉参数
 drawer_width = 200;
@@ -114,4 +114,6 @@ module E03_Drawer_Unit(pull_out = 0) {
 }
 
 // 预览
-E03_Drawer_Unit(pull_out = 100);
+if ($preview && is_undef($assembly_mode)) {
+    E03_Drawer_Unit(pull_out = 100);
+}

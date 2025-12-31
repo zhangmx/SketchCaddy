@@ -3,8 +3,8 @@
 // 定位销与滑槽 - 防止面板错位和脱落
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 定位销参数
 pin_diameter = 8;
@@ -123,4 +123,6 @@ module F06_Alignment_Pin_Slot() {
 }
 
 // 预览
-F06_Alignment_Pin_Slot();
+if ($preview && is_undef($assembly_mode)) {
+    F06_Alignment_Pin_Slot();
+}

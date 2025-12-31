@@ -3,8 +3,8 @@
 // 磁性工作表面 - 柔性磁白板，带背胶
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 磁性表面尺寸
 surface_width = 480;         // 略小于面板宽度
@@ -42,4 +42,6 @@ module B10_Magnetic_Surface_Framed() {
 }
 
 // 预览
-B10_Magnetic_Surface();
+if ($preview && is_undef($assembly_mode)) {
+    B10_Magnetic_Surface();
+}

@@ -3,8 +3,8 @@
 // 重型平面合页 - 用于门板，不锈钢
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 合页参数
 hinge_length = 80;           // 合页总长
@@ -71,4 +71,6 @@ module F01_Heavy_Duty_Hinge(angle = 0) {
 }
 
 // 预览
-F01_Heavy_Duty_Hinge(angle = 45);
+if ($preview && is_undef($assembly_mode)) {
+    F01_Heavy_Duty_Hinge(angle = 45);
+}

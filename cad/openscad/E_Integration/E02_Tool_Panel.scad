@@ -3,8 +3,8 @@
 // 工具挂板 - 集成MOLLE织带、弹力绳、网兜
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 挂板参数
 panel_width = 450;
@@ -92,4 +92,6 @@ module E02_Elastic_Cord(start, end, diameter = 4) {
 }
 
 // 预览
-E02_Tool_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    E02_Tool_Panel();
+}

@@ -3,8 +3,8 @@
 // 支撑支腿 - 无轮端，带可调节脚垫
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 支腿参数
 leg_length = 100;            // 支腿长度
@@ -109,4 +109,6 @@ module C03_Support_Leg(foot_extension = 0) {
 }
 
 // 预览
-C03_Support_Leg(foot_extension = 10);
+if ($preview && is_undef($assembly_mode)) {
+    C03_Support_Leg(foot_extension = 10);
+}

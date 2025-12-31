@@ -4,8 +4,8 @@
 // 可与侧板组合成三合一大画板
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 面板尺寸
 panel_height = global_box_height;  // 750mm
@@ -77,4 +77,6 @@ module B03_Front_Panel() {
 }
 
 // 预览
-B03_Front_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    B03_Front_Panel();
+}

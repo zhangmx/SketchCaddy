@@ -3,8 +3,8 @@
 // 底板 - 520x520mm，集成轮子支架和地脚安装位
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 面板尺寸
 panel_length = global_box_length;  // 520mm
@@ -79,4 +79,6 @@ module B02_wheel_mount_holes() {
 }
 
 // 预览
-B02_Bottom_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    B02_Bottom_Panel();
+}

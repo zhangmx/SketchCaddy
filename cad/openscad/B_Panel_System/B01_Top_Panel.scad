@@ -3,8 +3,8 @@
 // 顶板 - 520x520mm，集成拉杆安装孔和画架角度调节器
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 面板尺寸
 panel_length = global_box_length;  // 520mm
@@ -70,4 +70,6 @@ module B01_adjuster_holes() {
 }
 
 // 预览
-B01_Top_Panel();
+if ($preview && is_undef($assembly_mode)) {
+    B01_Top_Panel();
+}

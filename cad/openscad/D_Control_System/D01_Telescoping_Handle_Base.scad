@@ -3,8 +3,8 @@
 // 伸缩拉杆底座 - 金属冲压件，固定于后面板
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 底座参数
 base_width = 80;
@@ -64,4 +64,6 @@ module D01_Tube_Socket() {
 }
 
 // 预览
-D01_Telescoping_Handle_Base();
+if ($preview && is_undef($assembly_mode)) {
+    D01_Telescoping_Handle_Base();
+}

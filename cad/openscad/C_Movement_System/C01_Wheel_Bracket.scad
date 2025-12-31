@@ -3,8 +3,8 @@
 // 轮子安装支架 - L形钣金件
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 支架参数
 bracket_width = 60;          // 支架宽度
@@ -66,4 +66,6 @@ module C01_Wheel_Bracket_Reinforced() {
 }
 
 // 预览
-C01_Wheel_Bracket_Reinforced();
+if ($preview && is_undef($assembly_mode)) {
+    C01_Wheel_Bracket_Reinforced();
+}

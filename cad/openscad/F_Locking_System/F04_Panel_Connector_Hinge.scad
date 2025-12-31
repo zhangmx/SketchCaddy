@@ -3,8 +3,8 @@
 // 面板拼接铰链 - 用于三合一画板功能
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 铰链参数
 hinge_length = 100;          // 铰链长度
@@ -108,4 +108,6 @@ module F04_Panel_Connector_With_Alignment(angle = 0) {
 }
 
 // 预览
-F04_Panel_Connector_Hinge(angle = 0);
+if ($preview && is_undef($assembly_mode)) {
+    F04_Panel_Connector_Hinge(angle = 0);
+}

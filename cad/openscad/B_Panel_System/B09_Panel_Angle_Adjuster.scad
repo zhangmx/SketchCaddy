@@ -3,8 +3,8 @@
 // 画板角度调节器 - 5档位，带弹簧卡珠
 // ============================================
 
-use <../libs/global_params.scad>
-use <../libs/utils.scad>
+include <../libs/global_params.scad>
+include <../libs/utils.scad>
 
 // 调节器参数
 bracket_length = 80;
@@ -107,4 +107,6 @@ module B09_Panel_Angle_Adjuster(angle = 0) {
 }
 
 // 预览
-B09_Panel_Angle_Adjuster(angle = 30);
+if ($preview && is_undef($assembly_mode)) {
+    B09_Panel_Angle_Adjuster(angle = 30);
+}
