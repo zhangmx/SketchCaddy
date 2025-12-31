@@ -39,6 +39,8 @@ use <F_Locking_System/F03_Panel_Quick_Release.scad>
 use <F_Locking_System/F04_Panel_Connector_Hinge.scad>
 use <F_Locking_System/F06_Alignment_Pin_Slot.scad>
 
+use <G_Extension_Modules/G01_Folding_Stool.scad>
+
 // ============================================
 // 装配模式标志（防止子模块自动渲染预览）
 // ============================================
@@ -157,35 +159,39 @@ module SketchCaddy_Assembly() {
     // ========================================
     // C. 移动系统
     // ========================================
+    // 注意：拉杆箱设计，轮子在拉杆下方（后面板Y=box_W侧）
+    // 拖行时向后倾斜，轮子在后方滚动
     
     // 轮子位置参数
-    wheel_offset_x = 60;
-    wheel_offset_y = 60;
-    wheel_z = -20;  // 轮子安装在底板下方
+    wheel_offset_x = 80;                    // 距离左右边缘
+    wheel_offset_from_rear = 60;            // 距离后面板（拉杆侧）
+    wheel_z = 0;                            // 轮子安装在底板下方
     
-    // C01+C02 前左轮
-    translate([wheel_offset_x, wheel_offset_y, wheel_z] + explode_offset([0, 0, -1], 120))
-    rotate([0, 0, 0]) {
+    // C01+C02 后左轮（拉杆下方左侧）
+    translate([wheel_offset_x, box_W - wheel_offset_from_rear, wheel_z] + explode_offset([0, 0, -1], 120))
+    rotate([0, 0, 180]) {  // 旋转使轮子朝向正确（沿Y轴滚动）
         C01_Wheel_Bracket_Reinforced();
-        translate([0, 0, -250])
+        translate([30, 15, -80])
+        rotate([0, 0, 90])  // 轮子滚动方向沿Y轴
         C02_Pneumatic_Wheel();
     }
     
-    // C01+C02 前右轮
-    translate([box_L - wheel_offset_x, wheel_offset_y, wheel_z] + explode_offset([0, 0, -1], 120))
-    rotate([0, 0, 0]) {
+    // C01+C02 后右轮（拉杆下方右侧）
+    translate([box_L - wheel_offset_x, box_W - wheel_offset_from_rear, wheel_z] + explode_offset([0, 0, -1], 120))
+    rotate([0, 0, 180]) {
         C01_Wheel_Bracket_Reinforced();
-        translate([0, 0, -250])
+        translate([30, 15, -80])
+        rotate([0, 0, 90])
         C02_Pneumatic_Wheel();
     }
     
-    // C03 后左支撑腿
-    translate([wheel_offset_x, box_W - wheel_offset_y, 0] + explode_offset([0, 0, -1], 100))
+    // C03 前左支撑腿（远离拉杆的一侧）
+    translate([wheel_offset_x, 60, 0] + explode_offset([0, 0, -1], 100))
     rotate([180, 0, 0])
     C03_Support_Leg(foot_extension = 5);
     
-    // C03 后右支撑腿
-    translate([box_L - wheel_offset_x, box_W - wheel_offset_y, 0] + explode_offset([0, 0, -1], 100))
+    // C03 前右支撑腿
+    translate([box_L - wheel_offset_x, 60, 0] + explode_offset([0, 0, -1], 100))
     rotate([180, 0, 0])
     C03_Support_Leg(foot_extension = 5);
     
@@ -221,6 +227,58 @@ module SketchCaddy_Assembly() {
     translate([box_L - 100, box_W/2, panel_t + 20] + explode_offset([1, 0, 0], 60))
     scale(0.8)  // 缩放以适应内部空间
     E04_Water_Container_Holder();
+    
+    // ========================================
+    // F. 连接与锁闭系统
+    // ========================================
+    
+    // F01 重型合页 - 左侧门 (2个)
+    translate([panel_t, 100, 100] + explode_offset([-1, 0, 0], 40))
+    rotate([0, 90, 0])
+    rotate([0, 0, 90])
+    F01_Heavy_Duty_Hinge_Simple(angle = left_door_angle);
+    
+    translate([panel_t, 100, 500] + explode_offset([-1, 0, 0], 40))
+    rotate([0, 90, 0])
+    rotate([0, 0, 90])
+    F01_Heavy_Duty_Hinge_Simple(angle = left_door_angle);
+    
+    // F01 重型合页 - 右侧门 (2个)
+    translate([box_L - panel_t, 100, 100] + explode_offset([1, 0, 0], 40))
+    rotate([0, -90, 0])
+    rotate([0, 0, 90])
+    F01_Heavy_Duty_Hinge_Simple(angle = right_door_angle);
+    
+    translate([box_L - panel_t, 100, 500] + explode_offset([1, 0, 0], 40))
+    rotate([0, -90, 0])
+    rotate([0, 0, 90])
+    F01_Heavy_Duty_Hinge_Simple(angle = right_door_angle);
+    
+    // F02 翻板锁 - 左侧门 (2个)
+    translate([panel_t + 5, box_W - 80, 200] + explode_offset([-1, 0, 0], 50))
+    rotate([0, 0, -90])
+    F02_Flip_Lock(locked = true);
+    
+    translate([panel_t + 5, box_W - 80, 550] + explode_offset([-1, 0, 0], 50))
+    rotate([0, 0, -90])
+    F02_Flip_Lock(locked = true);
+    
+    // F02 翻板锁 - 右侧门 (2个)
+    translate([box_L - panel_t - 5, box_W - 80, 200] + explode_offset([1, 0, 0], 50))
+    rotate([0, 0, 90])
+    F02_Flip_Lock(locked = true);
+    
+    translate([box_L - panel_t - 5, box_W - 80, 550] + explode_offset([1, 0, 0], 50))
+    rotate([0, 0, 90])
+    F02_Flip_Lock(locked = true);
+    
+    // ========================================
+    // G. 扩展功能模块
+    // ========================================
+    
+    // G01 折叠凳（存放在箱底）
+    translate([20, 120, panel_t + 5] + explode_offset([0, 0, -1], 150))
+    G01_Folding_Stool(folded = true);
 }
 
 // ============================================

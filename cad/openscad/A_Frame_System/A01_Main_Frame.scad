@@ -104,6 +104,60 @@ module A01_Main_Frame() {
     // 后右立柱
     translate([frame_length - profile_size, frame_width - profile_size, profile_size])
     extrusion(extrusion_type, beam_length_z, center = false);
+    
+    // ========================================
+    // 内部加强横梁（增加结构稳定性）
+    // ========================================
+    
+    // 中层水平横梁（高度约1/3处，约250mm）
+    mid_height_1 = 250;
+    
+    // 中层前横梁 (沿X轴)
+    translate([profile_size, 0, mid_height_1])
+    rotate([0, 90, 0])
+    extrusion(extrusion_type, beam_length_x, center = false);
+    
+    // 中层后横梁 (沿X轴)
+    translate([profile_size, frame_width - profile_size, mid_height_1])
+    rotate([0, 90, 0])
+    extrusion(extrusion_type, beam_length_x, center = false);
+    
+    // 中层左横梁 (沿Y轴)
+    translate([0, profile_size, mid_height_1])
+    rotate([-90, 0, 0])
+    extrusion(extrusion_type, beam_length_y - 2 * profile_size, center = false);
+    
+    // 中层右横梁 (沿Y轴)
+    translate([frame_length - profile_size, profile_size, mid_height_1])
+    rotate([-90, 0, 0])
+    extrusion(extrusion_type, beam_length_y - 2 * profile_size, center = false);
+    
+    // 上层水平横梁（高度约2/3处，约500mm）
+    mid_height_2 = 500;
+    
+    // 上层前横梁 (沿X轴)
+    translate([profile_size, 0, mid_height_2])
+    rotate([0, 90, 0])
+    extrusion(extrusion_type, beam_length_x, center = false);
+    
+    // 上层后横梁 (沿X轴)
+    translate([profile_size, frame_width - profile_size, mid_height_2])
+    rotate([0, 90, 0])
+    extrusion(extrusion_type, beam_length_x, center = false);
+    
+    // ========================================
+    // 内部隔板支撑轨道
+    // ========================================
+    
+    // 底部中央横梁（用于支撑底部隔板/抽屉）
+    translate([frame_length / 2 - profile_size / 2, profile_size, profile_size])
+    rotate([-90, 0, 0])
+    extrusion(extrusion_type, beam_length_y - 2 * profile_size, center = false);
+    
+    // 中层中央横梁（用于划分存储区域）
+    translate([frame_length / 2 - profile_size / 2, profile_size, mid_height_1])
+    rotate([-90, 0, 0])
+    extrusion(extrusion_type, beam_length_y - 2 * profile_size, center = false);
 }
 
 // 单独渲染预览（仅在直接打开此文件时显示）
